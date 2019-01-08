@@ -23,7 +23,7 @@ export class FridgeComponent implements OnInit {
     this.fridgeService.getItems().then( rtn => {
       console.log('items returned');
       console.log(rtn);
-        this.itemArray = rtn;
+        this.itemArray = rtn['_body'];
     });
   }
 
