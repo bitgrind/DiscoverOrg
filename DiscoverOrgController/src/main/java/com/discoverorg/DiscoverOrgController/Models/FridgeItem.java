@@ -1,11 +1,13 @@
-package com.discoverorg.DiscoverOrgController.Objects;
+package com.discoverorg.DiscoverOrgController.Models;
 
-public class fridgeItem {
+public class FridgeItem {
 
     String itemUUID;
     String itemType;
     String itemName;
     Double fillFactor;
+
+    public FridgeItem() {}
 
     public String getItemUUID() {
         return itemUUID;

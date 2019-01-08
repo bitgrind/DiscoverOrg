@@ -1,11 +1,26 @@
 <div class="">
   <h1>Your Personalized Fridge!</h1>
 
+  <div (click)="putItem()">
+    Put Item
+  </div>
   <div (click)="getItems()">
     Get Items
   </div>
   <div>
     <h3>Items:</h3>
-    {{itemArray}}
+
+    <div class="fridge">
+
+      <div class="fridgeItem" *ngFor="let item of itemArray">
+        <div>
+          <div>{{item.itemUUID}}</div>
+          <div>{{item.itemName}}</div>
+          <div>{{item.itemType}}</div>
+          <div>{{item.fillFactor}}</div>
+        </div>
+        <div class="removeItem" (click)="removeItem(item.itemUUIDm)">X</div>
+      </div>
+    </div>
   </div>
 </div>

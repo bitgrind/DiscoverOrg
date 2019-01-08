@@ -10,6 +10,13 @@ import { FridgeService } from '../fridge-service/fridge.service';
 export class FridgeComponent implements OnInit {
 
   itemArray;
+  itemUUIDCount = 1;
+  item = {
+    itemType: 'Drink',
+    itemUUID: 1,
+    name: 'Milk',
+    fillFactor: 1
+  };
 
   constructor(
     public fridgeService: FridgeService
@@ -23,8 +30,20 @@ export class FridgeComponent implements OnInit {
     this.fridgeService.getItems().then( rtn => {
       console.log('items returned');
       console.log(rtn);
-        this.itemArray = rtn['_body'];
+      console.log(rtn['_body']);
+      this.itemArray = rtn;
+      console.log(this.itemArray);
     });
   }
+
+  putItem() {
+    console.log('put item!');
+    this.fridgeService.putItems(this.item).then( rtn => {
+      console.log('items put');
+      console.log(rtn);
+    });
+  }
+
+  
 
 }
