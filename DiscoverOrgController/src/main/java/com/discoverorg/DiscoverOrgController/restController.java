@@ -21,9 +21,9 @@ public class restController {
         return "remove";
     }
 
-    @RequestMapping("/getItem")
+    @RequestMapping("/getItems")
     public String getItem() {
-        return "get";
+        return "List of All Items";
     }
 
     @RequestMapping("/forgetItem")
