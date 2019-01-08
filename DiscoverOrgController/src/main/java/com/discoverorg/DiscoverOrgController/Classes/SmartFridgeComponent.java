@@ -1,6 +1,7 @@
-package com.discoverorg.DiscoverOrgController.Components;
+package com.discoverorg.DiscoverOrgController.Classes;
 
 import com.discoverorg.DiscoverOrgController.Interfaces.SmartFridgeManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
