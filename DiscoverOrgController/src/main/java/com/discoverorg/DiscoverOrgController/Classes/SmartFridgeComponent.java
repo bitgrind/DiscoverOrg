@@ -35,13 +35,7 @@ public class SmartFridgeComponent implements SmartFridgeManager {
 
     public void handleItemAdded(long itemType, String itemUUID, String itemName, Double fillFactor) {
 
-        FridgeItem newItem = new FridgeItem();
-
-        newItem.setItemUUID(itemUUID);
-        newItem.setItemName(itemName);
-        newItem.setItemType(itemType);
-        newItem.setFillFactor(fillFactor);
-
+        FridgeItem newItem = new FridgeItem(itemType, itemUUID, itemName, fillFactor);
         fridgeArray.add(newItem);
     }
 
@@ -77,7 +71,7 @@ public class SmartFridgeComponent implements SmartFridgeManager {
         return averageFillFactor/averageFillFactorCount;
     }
 
-    public void forgetItem(long itemType ) {
+    public void forgetItem(long itemType) {
         forgetArray.add(itemType);
     }
 

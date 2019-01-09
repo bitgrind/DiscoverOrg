@@ -52,7 +52,7 @@ export class FridgeService {
 
   forgetItem(item) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.forgetItemUrl + '?itemUUID=' + item, {responseType: 'text'})
+      this.http.get(this.forgetItemUrl + '?itemType=' + item, {responseType: 'text'})
         .subscribe( data => {
           resolve(data);
           reject(data);

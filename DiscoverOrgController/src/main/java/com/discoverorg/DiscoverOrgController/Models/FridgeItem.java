@@ -7,7 +7,12 @@ public class FridgeItem {
     String itemName;
     Double fillFactor;
 
-    public FridgeItem() {}
+    public FridgeItem(long itemType, String itemUUID, String itemName, Double fillFactor) {
+        itemUUID = itemUUID;
+        itemName = itemName;
+        itemType = itemType;
+        fillFactor = fillFactor;
+    }
 
     public String getItemUUID() {
         return itemUUID;

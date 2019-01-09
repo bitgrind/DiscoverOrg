@@ -2,17 +2,14 @@ package com.discoverorg.DiscoverOrgController;
 
 import com.discoverorg.DiscoverOrgController.Classes.SmartFridgeComponent;
 import com.discoverorg.DiscoverOrgController.Models.FridgeItem;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @CrossOrigin
-public class restController {
+public class FridgeController {
 
     @Autowired
     SmartFridgeComponent SmartFridgeComponent;
@@ -44,8 +41,8 @@ public class restController {
 
     @RequestMapping(value = "/forgetItem", method = RequestMethod.GET)
     @ResponseBody
-    public String forgetItem(@RequestParam("itemUUID") Long itemUUID) {
-        SmartFridgeComponent.forgetItem(itemUUID);
+    public String forgetItem(@RequestParam("itemType") Long itemType) {
+        SmartFridgeComponent.forgetItem(itemType);
         return "Item Forgot";
     }
 
