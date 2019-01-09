@@ -10,36 +10,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RestController
+@CrossOrigin
 public class restController {
 
     @Autowired
     SmartFridgeComponent SmartFridgeComponent;
 
-    @CrossOrigin
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
-    @ResponseBody
-    public String addItem(long itemType, String itemUUID, String name, Double fillFactor) {
-        SmartFridgeComponent.handleItemAdded(itemType, itemUUID, name, fillFactor);
+    public @ResponseBody String addItem(@RequestBody FridgeItem fridgeItem) {
+        SmartFridgeComponent.handleItemAdded(fridgeItem.getItemType(), fridgeItem.getItemUUID(), fridgeItem.getItemName(), fridgeItem.getFillFactor());
         return "Item Added";
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/removeItem", method = RequestMethod.GET)
     @ResponseBody
-    public String removeItem() {
+    public String removeItem(@RequestParam("itemUUID") String itemUUID) {
+        SmartFridgeComponent.handleItemRemoved(itemUUID);
         return "remove";
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/getItemsInFridge", method = RequestMethod.GET)
     @ResponseBody
     public ArrayList<FridgeItem> getItemsInFridge() {
         return SmartFridgeComponent.getItemsInFridge();
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/getItems", method = RequestMethod.GET)
     @ResponseBody
     public Object[] getItems(Double fillAmount) {
@@ -48,7 +44,6 @@ public class restController {
         return rtnObj;
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/forgetItem", method = RequestMethod.GET)
     @ResponseBody
     public String forgetItem() {

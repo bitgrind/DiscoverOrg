@@ -1,10 +1,6 @@
 <div class="">
   <h1>Your Personalized Fridge!</h1>
-
-  <div (click)="putItem()">
-    Put Item
-  </div>
-  <div (click)="getItems()">
+  <div (mousedown)="getItems()">
     Get Items
   </div>
   <div>
@@ -14,13 +10,34 @@
 
       <div class="fridgeItem" *ngFor="let item of itemArray">
         <div>
-          <div>{{item.itemUUID}}</div>
-          <div>{{item.itemName}}</div>
-          <div>{{item.itemType}}</div>
-          <div>{{item.fillFactor}}</div>
+          <div>Name: {{item.itemName}}</div>
+          <div>UUID: {{item.itemUUID}}</div>
+          <div>Type: {{item.itemType}}</div>
+          <div>Fill: {{item.fillFactor}}</div>
         </div>
-        <div class="removeItem" (click)="removeItem(item.itemUUIDm)">X</div>
+        <div class="removeItem" (click)="removeItem(item)">X</div>
       </div>
+    </div>
+    <div class="fridgeItemForm">
+      <form [formGroup]="makeFridgeItemForm" (ngSubmit)="addItem(makeFridgeItemForm)" novalidate>
+        <div>
+          <div>Item Name</div>
+          <input formControlName="itemName" placeholder="Item Name">
+        </div>
+        <div>
+          <div>Item UUID</div>
+          <input formControlName="itemUUID" placeholder="Item UUID">
+        </div>
+        <div>
+          <div>Item Type</div>
+          <input formControlName="itemUUID" placeholder="Item UUID">
+        </div>
+        <div>
+          <div>Item Fill Amount</div>
+          <input formControlName="itemUUID" placeholder="Item UUID">
+        </div>
+        <div type="submit">Submit</div>
+      </form>
     </div>
   </div>
 </div>

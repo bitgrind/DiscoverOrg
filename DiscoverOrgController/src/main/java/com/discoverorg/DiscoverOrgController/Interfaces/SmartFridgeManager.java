@@ -21,10 +21,11 @@ public interface SmartFridgeManager {
      *
      * @param itemType
      * @param itemUUID
-     * @param name
+     * @param itemName
      * @param fillFactor
+        void handleItemAdded( long itemType, String itemUUID, String name, Double fillFactor );
      */
-    void handleItemAdded( long itemType, String itemUUID, String name, Double fillFactor );
+    void handleItemAdded(long itemType, String itemUUID, String itemName, Double fillFactor);
 
     /**
      * These are the query methods for the fridge to be able to display alerts and create shopping

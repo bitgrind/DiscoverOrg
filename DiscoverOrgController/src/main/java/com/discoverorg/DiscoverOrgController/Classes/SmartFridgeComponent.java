@@ -3,12 +3,10 @@ package com.discoverorg.DiscoverOrgController.Classes;
 import com.discoverorg.DiscoverOrgController.Interfaces.SmartFridgeManager;
 import com.discoverorg.DiscoverOrgController.Models.FridgeItem;
 import org.json.JSONArray;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class SmartFridgeComponent implements SmartFridgeManager {
@@ -18,35 +16,36 @@ public class SmartFridgeComponent implements SmartFridgeManager {
     public ArrayList<FridgeItem> fridgeArray = new ArrayList<>();
 
     public void handleItemRemoved( String itemUUID ) {
+        System.out.println("Item UID");
+        System.out.println(itemUUID);
 
+        int arraySize = fridgeArray.size();
+        ArrayList<FridgeItem> newFrideArray = new ArrayList<>();
+
+        for (int i = 0; i < arraySize; i++) {
+            System.out.println("Array loop");
+            if (!fridgeArray.get(i).getItemUUID().equals(itemUUID)) {
+                System.out.print("Remove Item");
+                newFrideArray.add(fridgeArray.get(i));
+            }
+        }
+
+        fridgeArray = newFrideArray;
     }
 
-    public void handleItemAdded(long itemType, String itemUUID, String name, Double fillFactor) {
-        JSONObject newItem = new JSONObject();
-        newItem.put("itemUUID", itemUUID);
-        newItem.put("name", name);
-        newItem.put("itemType", itemType);
-        newItem.put("fillFactor", fillFactor);
+    public void handleItemAdded(long itemType, String itemUUID, String itemName, Double fillFactor) {
 
-        fridgeItemArray.put(newItem);
+        FridgeItem newItem = new FridgeItem();
+
+        newItem.setItemUUID(itemUUID);
+        newItem.setItemName(itemName);
+        newItem.setItemType(itemType);
+        newItem.setFillFactor(fillFactor);
+
+        fridgeArray.add(newItem);
     }
 
     public ArrayList<FridgeItem> getItemsInFridge() {
-
-        FridgeItem newItem = new FridgeItem();
-        JSONObject rtnObj = new JSONObject();
-
-        newItem.setItemUUID("001");
-        newItem.setItemName("Milk");
-        newItem.setItemType("Drink");
-        newItem.setFillFactor(1.0);
-
-
-        fridgeArray.add(newItem);
-
-
-        rtnObj.put("itemList", fridgeArray);
-
         return fridgeArray;
     }
 

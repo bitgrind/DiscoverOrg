@@ -3,7 +3,7 @@ package com.discoverorg.DiscoverOrgController.Models;
 public class FridgeItem {
 
     String itemUUID;
-    String itemType;
+    Long itemType;
     String itemName;
     Double fillFactor;
 
@@ -17,11 +17,11 @@ public class FridgeItem {
         this.itemUUID = itemUUID;
     }
 
-    public String getItemType() {
+    public Long getItemType() {
         return itemType;
     }
 
-    public void setItemType(String itemType) {
+    public void setItemType(Long itemType) {
         this.itemType = itemType;
     }
 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FridgeService } from '../fridge-service/fridge.service';
+import {FormControl, FormGroup} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-fridge-component',
@@ -11,16 +14,27 @@ export class FridgeComponent implements OnInit {
 
   itemArray;
   itemUUIDCount = 1;
+
+  // @ts-ignore
   item = {
-    itemType: 'Drink',
-    itemUUID: 1,
-    name: 'Milk',
-    fillFactor: 1
+    itemType: 1,
+    itemUUID: '1',
+    itemName: 'Milk',
+    fillFactor: 1.0
   };
+
+  makeFridgeItemForm;
 
   constructor(
     public fridgeService: FridgeService
-  ) { }
+  ) {
+    this.makeFridgeItemForm = new FormGroup({
+      itemName: new FormControl(''),
+      itemUUID: new FormControl(''),
+      itemType: new FormControl(''),
+      fillFactor: new FormControl(''),
+    });
+  }
 
   ngOnInit() {
   }
@@ -28,22 +42,32 @@ export class FridgeComponent implements OnInit {
   getItems() {
     console.log('get items!');
     this.fridgeService.getItems().then( rtn => {
-      console.log('items returned');
       console.log(rtn);
-      console.log(rtn['_body']);
       this.itemArray = rtn;
-      console.log(this.itemArray);
     });
   }
 
-  putItem() {
-    console.log('put item!');
-    this.fridgeService.putItems(this.item).then( rtn => {
-      console.log('items put');
+  addItem(form) {
+
+    const newItem = {
+      itemName: form.value.itemName,
+      itemUUID: form.value.itemUUID,
+      itemType: form.value.itemType,
+      fillFactor: form.value.fillFactor
+    };
+
+    console.log('add item!');
+    console.log(newItem);
+    this.fridgeService.addItems(newItem).then( rtn => {
       console.log(rtn);
     });
   }
 
-  
-
+  removeItem(item) {
+    console.log('remove item');
+    console.log(item);
+    this.fridgeService.removeItem(item.itemUUID).then( rtn => {
+      console.log(rtn);
+    });
+  }
 }
