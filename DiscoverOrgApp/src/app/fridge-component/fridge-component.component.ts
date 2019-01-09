@@ -37,6 +37,7 @@ export class FridgeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getItems();
   }
 
   getItems() {
@@ -48,18 +49,21 @@ export class FridgeComponent implements OnInit {
   }
 
   addItem(form) {
+    console.log('submit form');
+    console.log(form);
 
     const newItem = {
-      itemName: form.value.itemName,
-      itemUUID: form.value.itemUUID,
-      itemType: form.value.itemType,
-      fillFactor: form.value.fillFactor
+      itemName: form.controls['itemName'].value,
+      itemUUID: form.controls['itemUUID'].value,
+      itemType: form.controls['itemType'].value,
+      fillFactor: form.controls['fillFactor'].value
     };
 
     console.log('add item!');
     console.log(newItem);
     this.fridgeService.addItems(newItem).then( rtn => {
       console.log(rtn);
+      this.getItems();
     });
   }
 

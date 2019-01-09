@@ -5,19 +5,6 @@
   </div>
   <div>
     <h3>Items:</h3>
-
-    <div class="fridge">
-
-      <div class="fridgeItem" *ngFor="let item of itemArray">
-        <div>
-          <div>Name: {{item.itemName}}</div>
-          <div>UUID: {{item.itemUUID}}</div>
-          <div>Type: {{item.itemType}}</div>
-          <div>Fill: {{item.fillFactor}}</div>
-        </div>
-        <div class="removeItem" (click)="removeItem(item)">X</div>
-      </div>
-    </div>
     <div class="fridgeItemForm">
       <form [formGroup]="makeFridgeItemForm" (ngSubmit)="addItem(makeFridgeItemForm)" novalidate>
         <div>
@@ -30,14 +17,26 @@
         </div>
         <div>
           <div>Item Type</div>
-          <input formControlName="itemUUID" placeholder="Item UUID">
+          <input formControlName="itemType" placeholder="Item Type">
         </div>
         <div>
           <div>Item Fill Amount</div>
-          <input formControlName="itemUUID" placeholder="Item UUID">
+          <input formControlName="fillFactor" placeholder="Fill Factor">
         </div>
-        <div type="submit">Submit</div>
+        <button type="submit">Submit</button>
       </form>
+    </div>
+
+    <div class="fridge">
+      <div class="fridgeItem" *ngFor="let item of itemArray">
+        <div>
+          <div>Name: {{item.itemName}}</div>
+          <div>UUID: {{item.itemUUID}}</div>
+          <div>Type: {{item.itemType}}</div>
+          <div>Fill: {{item.fillFactor}}</div>
+        </div>
+        <div class="removeItem" (click)="removeItem(item)">X</div>
+      </div>
     </div>
   </div>
 </div>
