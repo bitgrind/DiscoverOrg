@@ -51,11 +51,10 @@
       </div>
       <div class="removeItem" (click)="removeItem(item)">Remove</div>
       <div class="forgetItem" (click)="forgetItem(item)">Forget</div>
-      <div class="forgetItem" (click)="getAverageFill(item)">Average Fill</div>
+      <div class="forgetItem" (click)="getAverageFill(item)">Average Fill Rate</div>
     </div>
   </div>
   <div class="fill-rate">
-    <h2>Average Fill Rate of {{averageFillItem.itemName}} is {{averageFillAmount}}</h2>
-
+    <h2>Average Fill Rate <span *ngIf="averageFillAmount"> of {{averageFillItem?.itemName}} is {{averageFillAmount}}</span></h2>
   </div>
 </div>
