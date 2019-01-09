@@ -1,5 +1,9 @@
 package com.discoverorg.DiscoverOrgController.Interfaces;
 
+import com.discoverorg.DiscoverOrgController.Models.FridgeItem;
+
+import java.util.ArrayList;
+
 public interface SmartFridgeManager {
 
     /**
@@ -44,7 +48,7 @@ public interface SmartFridgeManager {
      *
      * @return an array of arrays containing [ itemType, fillFactor ]
      */
-    Object[] getItems( Double fillFactor );
+    ArrayList<FridgeItem> getItems(Double fillFactor );
 
     /**
      * Returns the fill factor for a given item type to be displayed to the owner. Unless all available containers are

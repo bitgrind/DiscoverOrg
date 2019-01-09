@@ -1,7 +1,8 @@
 .fridge {
   width:900px;
   position: relative;
-  margin:auto;
+  float:left;
+  margin-left:50px;
 }
 
 .fridgeItem {
@@ -27,5 +28,21 @@
 
 .fridgeItemForm {
   width:300px;
+}
 
+.shopping-list {
+  width:300px;
+  float:left;
+}
+
+.shopping-list-item {
+  float:left;
+  width:280px;
+  position: relative;
+  margin:5px;
+
+  > div {
+    padding:10px;
+    background-color: #ddd;
+  }
 }

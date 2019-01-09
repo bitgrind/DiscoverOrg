@@ -14,15 +14,15 @@ public class SmartFridgeComponent implements SmartFridgeManager {
     public Object[] itemArray;
     public JSONArray fridgeItemArray;
     public ArrayList<FridgeItem> fridgeArray = new ArrayList<>();
+    public ArrayList<Long> forgetArray = new ArrayList<>();
 
     public void handleItemRemoved( String itemUUID ) {
         System.out.println("Item UID");
         System.out.println(itemUUID);
 
-        int arraySize = fridgeArray.size();
         ArrayList<FridgeItem> newFrideArray = new ArrayList<>();
 
-        for (int i = 0; i < arraySize; i++) {
+        for (int i = 0; i < fridgeArray.size(); i++) {
             System.out.println("Array loop");
             if (!fridgeArray.get(i).getItemUUID().equals(itemUUID)) {
                 System.out.print("Remove Item");
@@ -49,8 +49,16 @@ public class SmartFridgeComponent implements SmartFridgeManager {
         return fridgeArray;
     }
 
-    public Object[] getItems( Double fillFactor ) {
-        Object[] rtnList = new Object[1];
+    public ArrayList<FridgeItem> getItems( Double fillFactor ) {
+        ArrayList<FridgeItem> rtnList = new ArrayList<>();
+        System.out.print("Fill Factor");
+        System.out.print(fillFactor);
+
+        for (int i = 0; i < fridgeArray.size(); i++) {
+            if (fridgeArray.get(i).getFillFactor() < fillFactor) {
+                rtnList.add(fridgeArray.get(i));
+            }
+        }
 
         return rtnList;
     }
@@ -59,8 +67,8 @@ public class SmartFridgeComponent implements SmartFridgeManager {
         return 2.1;
     }
 
-    public void forgetItem( long itemType ) {
-
+    public void forgetItem(long itemType ) {
+        forgetArray.add(itemType);
     }
 
 }

@@ -9,6 +9,8 @@ export class FridgeService {
   getItemsUrl = 'http://localhost:8080/getItemsInFridge';
   putItemUrl = 'http://localhost:8080/addItem';
   removeItemUrl = 'http://localhost:8080/removeItem';
+  getShoppingItemsUrl = 'http://localhost:8080/getItems';
+
 
   constructor(
     private http: HttpClient
@@ -27,8 +29,9 @@ export class FridgeService {
 
   addItems(item) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.putItemUrl, item)
+      this.http.post(this.putItemUrl, item, {responseType: 'text'})
         .subscribe( data => {
+          console.log(data);
           resolve(data);
           reject(data);
         });
@@ -37,7 +40,17 @@ export class FridgeService {
 
   removeItem(item) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.removeItemUrl + '?itemUUID=' + item)
+      this.http.get(this.removeItemUrl + '?itemUUID=' + item, {responseType: 'text'})
+        .subscribe( data => {
+          resolve(data);
+          reject(data);
+        });
+    });
+  }
+
+  getShoppingItems(number) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.getShoppingItemsUrl + '?fillFactor=' + number)
         .subscribe( data => {
           resolve(data);
           reject(data);

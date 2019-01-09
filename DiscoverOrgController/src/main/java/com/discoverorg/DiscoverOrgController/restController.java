@@ -38,10 +38,8 @@ public class restController {
 
     @RequestMapping(value = "/getItems", method = RequestMethod.GET)
     @ResponseBody
-    public Object[] getItems(Double fillAmount) {
-        Object[] rtnObj;
-        rtnObj = SmartFridgeComponent.getItems(fillAmount);
-        return rtnObj;
+    public ArrayList<FridgeItem> getItems(@RequestParam("fillFactor") Double fillFactor) {
+        return SmartFridgeComponent.getItems(fillFactor);
     }
 
     @RequestMapping(value = "/forgetItem", method = RequestMethod.GET)

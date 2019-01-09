@@ -15,6 +15,8 @@ export class FridgeComponent implements OnInit {
   itemArray;
   itemUUIDCount = 1;
 
+  shoppingList;
+
   // @ts-ignore
   item = {
     itemType: 1,
@@ -72,6 +74,13 @@ export class FridgeComponent implements OnInit {
     console.log(item);
     this.fridgeService.removeItem(item.itemUUID).then( rtn => {
       console.log(rtn);
+    });
+  }
+
+  getShoppingList() {
+    this.fridgeService.getShoppingItems(.5).then( rtn => {
+      console.log(rtn);
+      this.shoppingList = rtn;
     });
   }
 }
