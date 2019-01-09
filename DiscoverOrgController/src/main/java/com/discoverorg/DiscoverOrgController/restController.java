@@ -48,4 +48,10 @@ public class restController {
         SmartFridgeComponent.forgetItem(itemUUID);
         return "Item Forgot";
     }
+
+    @RequestMapping(value = "/getFillFactor", method = RequestMethod.GET)
+    @ResponseBody
+    public Double getFillFactor(@RequestParam("itemType") Long itemType) {
+        return SmartFridgeComponent.getFillFactor(itemType);
+    }
 }

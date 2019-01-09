@@ -16,6 +16,8 @@ export class FridgeComponent implements OnInit {
   itemUUIDCount = 1;
 
   shoppingList;
+  averageFillItem;
+  averageFillAmount;
 
   // @ts-ignore
   item = {
@@ -84,6 +86,16 @@ export class FridgeComponent implements OnInit {
     this.fridgeService.forgetItem(item.itemUUID).then( rtn => {
       console.log(rtn);
       this.getItems();
+    });
+  }
+
+  getAverageFill(item) {
+    console.log('forget item');
+    console.log(item);
+    this.averageFillItem = item;
+    this.fridgeService.getAverageFill(item.itemType).then( rtn => {
+      console.log(rtn);
+      this.averageFillAmount = rtn;
     });
   }
 

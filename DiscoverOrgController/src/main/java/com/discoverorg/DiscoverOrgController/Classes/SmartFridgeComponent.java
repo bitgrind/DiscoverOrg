@@ -63,8 +63,18 @@ public class SmartFridgeComponent implements SmartFridgeManager {
         return rtnList;
     }
 
-    public Double getFillFactor( long itemType ) {
-        return 2.1;
+    public Double getFillFactor(long itemType) {
+        Double averageFillFactor = 0.0;
+        int averageFillFactorCount = 0;
+
+        for (int i = 0; i < fridgeArray.size(); i++) {
+            if (fridgeArray.get(i).getItemType() == itemType) {
+                averageFillFactor += fridgeArray.get(i).getFillFactor();
+                averageFillFactorCount ++;
+            }
+        }
+
+        return averageFillFactor/averageFillFactorCount;
     }
 
     public void forgetItem(long itemType ) {

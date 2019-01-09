@@ -11,6 +11,7 @@ export class FridgeService {
   removeItemUrl = 'http://localhost:8080/removeItem';
   forgetItemUrl = 'http://localhost:8080/forgetItem';
   getShoppingItemsUrl = 'http://localhost:8080/getItems';
+  getAverageFillUrl = 'http://localhost:8080/getFillFactor';
 
 
   constructor(
@@ -52,6 +53,16 @@ export class FridgeService {
   forgetItem(item) {
     return new Promise((resolve, reject) => {
       this.http.get(this.forgetItemUrl + '?itemUUID=' + item, {responseType: 'text'})
+        .subscribe( data => {
+          resolve(data);
+          reject(data);
+        });
+    });
+  }
+
+  getAverageFill(item) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.getAverageFillUrl + '?itemType=' + item)
         .subscribe( data => {
           resolve(data);
           reject(data);
