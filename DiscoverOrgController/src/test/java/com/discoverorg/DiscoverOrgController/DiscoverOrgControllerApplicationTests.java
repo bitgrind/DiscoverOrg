@@ -77,17 +77,5 @@ public class DiscoverOrgControllerApplicationTests {
 
 		assertEquals(200, result.getStatusCodeValue());
 	}
-
-	@Test
-	public void testAddItemSuccess() throws URISyntaxException {
-		RestTemplate restTemplate = new RestTemplate();
-		FridgeItem newItem = new FridgeItem(1000L, "1", "Milk", 1.0);
-		final String baseUrl = "http://localhost:8080/addItem";
-		URI uri = new URI(baseUrl);
-		ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-
-		assertEquals(200, result.getStatusCodeValue());
-	}
-
 }
 
