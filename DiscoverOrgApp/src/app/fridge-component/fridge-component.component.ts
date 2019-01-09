@@ -74,6 +74,16 @@ export class FridgeComponent implements OnInit {
     console.log(item);
     this.fridgeService.removeItem(item.itemUUID).then( rtn => {
       console.log(rtn);
+      this.getItems();
+    });
+  }
+
+  forgetItem(item) {
+    console.log('forget item');
+    console.log(item);
+    this.fridgeService.forgetItem(item.itemUUID).then( rtn => {
+      console.log(rtn);
+      this.getItems();
     });
   }
 

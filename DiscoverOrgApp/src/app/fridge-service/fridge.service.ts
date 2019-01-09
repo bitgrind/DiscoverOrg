@@ -9,6 +9,7 @@ export class FridgeService {
   getItemsUrl = 'http://localhost:8080/getItemsInFridge';
   putItemUrl = 'http://localhost:8080/addItem';
   removeItemUrl = 'http://localhost:8080/removeItem';
+  forgetItemUrl = 'http://localhost:8080/forgetItem';
   getShoppingItemsUrl = 'http://localhost:8080/getItems';
 
 
@@ -41,6 +42,16 @@ export class FridgeService {
   removeItem(item) {
     return new Promise((resolve, reject) => {
       this.http.get(this.removeItemUrl + '?itemUUID=' + item, {responseType: 'text'})
+        .subscribe( data => {
+          resolve(data);
+          reject(data);
+        });
+    });
+  }
+
+  forgetItem(item) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.forgetItemUrl + '?itemUUID=' + item, {responseType: 'text'})
         .subscribe( data => {
           resolve(data);
           reject(data);

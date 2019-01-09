@@ -44,7 +44,8 @@ public class restController {
 
     @RequestMapping(value = "/forgetItem", method = RequestMethod.GET)
     @ResponseBody
-    public String forgetItem() {
-        return "forget";
+    public String forgetItem(@RequestParam("itemUUID") Long itemUUID) {
+        SmartFridgeComponent.forgetItem(itemUUID);
+        return "Item Forgot";
     }
 }

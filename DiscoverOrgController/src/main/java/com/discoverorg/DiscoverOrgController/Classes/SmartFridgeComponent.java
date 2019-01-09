@@ -55,7 +55,7 @@ public class SmartFridgeComponent implements SmartFridgeManager {
         System.out.print(fillFactor);
 
         for (int i = 0; i < fridgeArray.size(); i++) {
-            if (fridgeArray.get(i).getFillFactor() < fillFactor) {
+            if (fridgeArray.get(i).getFillFactor() < fillFactor && !forgetArray.contains(fridgeArray.get(i).getItemType())) {
                 rtnList.add(fridgeArray.get(i));
             }
         }
