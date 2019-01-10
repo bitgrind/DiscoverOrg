@@ -21,3 +21,11 @@ https://localhost:8080/getItemsInFridge -- gets all items in fridge
 https://localhost:8080/getItems -- creates shopping list for items under 50% fill factor
 https://localhost:8080/forgetItem?itemType=1001 -- will not add item to the shopping list
 https://localhost:8080/getFillFactor?itemType=1001 -- will not add item to the shopping list
+
+Models:
+FridgeItem = {
+  itemUUID = "0001", //String
+  itemName = "Milk", //String
+  itemType = 1002L, //Long
+  fillFactor = 1.0 //Double
+}
